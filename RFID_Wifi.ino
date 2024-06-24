@@ -7,12 +7,9 @@
 // #define LED 16
 // #define LED2 5
 String str;
-const char* ssid = "DGESRASs";
-const char* password = "dockatt2237";
-// const char* ssid = "TP-LINK_BEFE";
-// const char* password = "77763501";
-// const char* ssid = "SK Pixel 6";
-// const char* password = "12345678";
+const char* ssid = "WIFI PASSWORD";
+const char* password = "PASSWORD";
+
 bool requestSent = false;
 String dateTimeString;
 File dataFile;
@@ -72,7 +69,7 @@ void loop() {
 }
 bool sendData(int rfid, String dt) {
   HTTPClient http;
-  String apiURL = "https://esystems.cdl.lk/backend-Test/RFIDAttendanceWithMemory/RFID/postRFID?RFIDCode=" + String(rfid) + "&Device=2&DeviceDT=" + String(dt) + "&InOut=O";  // for esystem
+  String apiURL = "API";  // for esystem
   WiFiClientSecure client;                                                                                                                                                   // for esystem
   client.setInsecure();                                                                                                                                                      // for esystem
   http.begin(client, apiURL);
@@ -154,9 +151,9 @@ const unsigned long displayInterval = 2000;
 const unsigned long BuzzerInterval = 1000;
 unsigned long RFID_Data;
 bool isDisplayOn = false;
-char server[] =  "10.0.13.48";
+char server[] =  "SERVER";
 //bool NoonTriggered  = false;
-IPAddress ip(172, 30, 30, 118);
+IPAddress ip(IPAddress);
 byte mac[] = { 0xDE, 0xAD, 0xBE, 0xEF, 0xFE, 0xED };
 EthernetClient client;
 TwiLiquidCrystal lcd(LCD_ADDRESS);
@@ -275,19 +272,18 @@ void Sending_To_phpmyadmindatabase() {
     digitalWrite(LED_PINR, LOW);
     digitalWrite(LED_PING, HIGH);
     Serial.println("connected");
-    Serial.print("GET /RFID/postRFID?Device=2&InOut=I&RFIDCode=");
-    client.print("GET /RFID/postRFID?Device=2&InOut=I&RFIDCode=");
-    // Serial.print("GET /RFID/postRFID?Device=8&InOut=O&RFIDCode=");
-    // client.print("GET /RFID/postRFID?Device=8&InOut=O&RFIDCode=");
+    Serial.print("GET API");
+    client.print("GET API");
+  
     client.print(RFID_Data);
     Serial.println(RFID_Data);
     Serial.println(dbTime);
     client.print(" ");  // SPACE BEFORE HTTP/1.1
     client.print("HTTP/1.1");
     client.println();
-    //client.println("Host: 172.29.10.103");  // Backend PC
-    client.println("Host: 10.0.13.48");  // Backend PC
-    //client.println("Host: 192.168.1.48");
+   
+    client.println("Host: ");  // Backend PC
+   
     client.println("Connection: close");
     client.println();
   } else {
